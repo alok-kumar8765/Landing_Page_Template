@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>CloudFlow SaaS Landing</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+
+<body class="transition-all duration-300">
+
+<script>
+/* -------------------------------------------------------
+   TRANSLATIONS
+------------------------------------------------------- */
+const translations = {
+  en: {
+    nav: { features: 'Features', pricing: 'Pricing', testimonials: 'Testimonials', contact: 'Contact' },
+    hero: {
+      title: 'Transform Your Business with Intelligent Automation',
+      subtitle: 'Streamline operations, boost productivity, and scale faster with our cutting-edge SaaS platform trusted by 10,000+ companies worldwide.',
+      cta: 'Start Free Trial',
+      demo: 'Watch Demo'
+    },
+    stats: { companies: 'Companies', users: 'Active Users', uptime: 'Uptime', rating: 'Rating' },
+    features: {
+      title: 'Powerful Features Built for Growth',
+      subtitle: 'Everything you need to succeed in one platform',
+    },
+    pricing: {
+      title: 'Simple, Transparent Pricing',
+      subtitle: 'Choose the plan that fits your needs',
+      cta: 'Get Started'
+    },
+    testimonials: {
+      title: 'Loved by Teams Worldwide'
+    },
+    cta: {
+      title: 'Ready to Transform Your Business?',
+      subtitle: 'Join thousands of companies already growing with our platform',
+      button: 'Start Your Free Trial'
+    }
+  },
+
+  /* -------------------------------------------------------
+      SPANISH (ES)
+  ------------------------------------------------------- */
+  es: {
+    nav: { features: 'Funciones', pricing: 'Precios', testimonials: 'Testimonios', contact: 'Contacto' },
+    hero: {
+      title: 'Transforma tu negocio con automatización inteligente',
+      subtitle: 'Optimiza operaciones, aumenta productividad y escala más rápido con nuestra plataforma SaaS de vanguardia confiada por más de 10,000 empresas.',
+      cta: 'Comenzar prueba gratuita',
+      demo: 'Ver demo'
+    },
+    stats: { companies: 'Empresas', users: 'Usuarios activos', uptime: 'Disponibilidad', rating: 'Valoración' },
+    features: {
+      title: 'Funciones poderosas para crecer',
+      subtitle: 'Todo lo que necesitas para tener éxito en una sola plataforma',
+    },
+    pricing: {
+      title: 'Precios simples y transparentes',
+      subtitle: 'Elige el plan que se ajuste a tus necesidades',
+      cta: 'Comenzar'
+    },
+    testimonials: {
+      title: 'Amado por equipos de todo el mundo'
+    },
+    cta: {
+      title: '¿Listo para transformar tu negocio?',
+      subtitle: 'Únete a miles de empresas que ya están creciendo con nuestra plataforma',
+      button: 'Comenzar prueba gratuita'
+    }
+  },
+
+  /* -------------------------------------------------------
+      HINDI (HI)
+  ------------------------------------------------------- */
+  hi: {
+    nav: { features: 'विशेषताएँ', pricing: 'मूल्य', testimonials: 'प्रशंसापत्र', contact: 'संपर्क करें' },
+    hero: {
+      title: 'इंटेलिजेंट ऑटोमेशन के साथ अपने व्यवसाय को बदलें',
+      subtitle: 'संचालन को सरल बनाएं, उत्पादकता बढ़ाएं और हमारी अत्याधुनिक SaaS प्लेटफ़ॉर्म के साथ तेजी से स्केल करें जिस पर दुनिया भर की 10,000+ कंपनियाँ भरोसा करती हैं।',
+      cta: 'फ्री ट्रायल शुरू करें',
+      demo: 'डेमो देखें'
+    },
+    stats: { companies: 'कंपनियाँ', users: 'सक्रिय उपयोगकर्ता', uptime: 'अपटाइम', rating: 'रेटिंग' },
+    features: {
+      title: 'विकास के लिए शक्तिशाली फीचर्स',
+      subtitle: 'सफलता के लिए आवश्यक सब कुछ एक ही प्लेटफ़ॉर्म में उपलब्ध',
+    },
+    pricing: {
+      title: 'सरल और पारदर्शी मूल्य निर्धारण',
+      subtitle: 'अपनी आवश्यकताओं के अनुसार योजना चुनें',
+      cta: 'शुरू करें'
+    },
+    testimonials: {
+      title: 'दुनिया भर की टीमों द्वारा पसंद किया गया'
+    },
+    cta: {
+      title: 'क्या आप अपना व्यवसाय बदलने के लिए तैयार हैं?',
+      subtitle: 'उन हजारों कंपनियों में शामिल हों जो पहले से ही हमारे प्लेटफ़ॉर्म के साथ बढ़ रही हैं',
+      button: 'अपना फ्री ट्रायल शुरू करें'
+    }
+  }
+};
+
+
+/* -------------------------------------------------------
+   THEMES
+------------------------------------------------------- */
+const themes = {
+  light: {
+    bg: 'bg-white text-gray-900',
+    textSecondary: 'text-gray-600',
+    nav: 'bg-white/80 backdrop-blur-lg border-b border-gray-200',
+    card: 'bg-white border-gray-200',
+    cardHover: 'hover:shadow-xl hover:border-blue-200',
+    button: 'bg-blue-600 hover:bg-blue-700 text-white',
+    buttonSecondary: 'bg-gray-100 hover:bg-gray-200 text-gray-900',
+    accent: 'text-blue-600',
+    heroBg: 'bg-gradient-to-br from-blue-50 via-white to-purple-50',
+    statBg: 'bg-gradient-to-br from-blue-600 to-purple-600',
+    featureBg: 'bg-gray-50'
+  },
+  dark: {
+    bg: 'bg-gray-900 text-white',
+    textSecondary: 'text-gray-400',
+    nav: 'bg-gray-900/80 backdrop-blur-lg border-b border-gray-800',
+    card: 'bg-gray-800 border-gray-700',
+    cardHover: 'hover:shadow-2xl hover:border-blue-500',
+    button: 'bg-blue-600 hover:bg-blue-700 text-white',
+    buttonSecondary: 'bg-gray-800 hover:bg-gray-700 text-white',
+    accent: 'text-blue-400',
+    heroBg: 'bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900',
+    statBg: 'bg-gradient-to-br from-blue-600 to-purple-600',
+    featureBg: 'bg-gray-800'
+  },
+  crayon: {
+    bg: 'bg-amber-50 text-purple-900',
+    textSecondary: 'text-pink-700',
+    nav: 'bg-yellow-100/80 backdrop-blur-lg border-b border-pink-300',
+    card: 'bg-white border-pink-300',
+    cardHover: 'hover:shadow-2xl hover:border-purple-400 hover:rotate-1',
+    button: 'bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white',
+    buttonSecondary: 'bg-yellow-200 hover:bg-yellow-300 text-purple-900',
+    accent: 'text-pink-600',
+    heroBg: 'bg-gradient-to-br from-yellow-100 via-pink-50 to-purple-100',
+    statBg: 'bg-gradient-to-br from-pink-500 to-purple-600',
+    featureBg: 'bg-gradient-to-br from-yellow-50 to-pink-50'
+  }
+};
+
+let currentTheme = 'light';
+let currentLang = 'en';
+
+
+/* -------------------------------------------------------
+   ICONS (Lucide SVG inline)
+------------------------------------------------------- */
+const icons = {
+  zap: `<svg class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8L21 10h-9z"/></svg>`,
+  sun: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2m10-10h-2M4 12H2m15.364-7.364l-1.414 1.414M6.05 17.95l-1.414 1.414m0-13.414L6.05 6.05m11.314 11.314l1.414 1.414"/></svg>`,
+  moon: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>`,
+  palette: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M12 3C7.03 3 3 7.03 3 12c0 4.42 4.03 9 9 9 1.57 0 3-.5 3-2 0-1.1-.9-2-2-2H10a1 1 0 0 1-1-1c0-.47.33-.87.78-.98C13.43 13.3 16 10.61 16 7a4 4 0 0 0-4-4z"/></svg>`,
+  menu: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M3 12h18M3 6h18M3 18h18"/></svg>`,
+  close: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 6L6 18M6 6l12 12"/></svg>`,
+  arrow: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg>`,
+  play: `<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>`
+};
+
+
+/* -------------------------------------------------------
+   RENDER FUNCTION
+------------------------------------------------------- */
+function renderPage() {
+  const t = translations[currentLang];
+  const th = themes[currentTheme];
+
+  document.body.className = `${th.bg}`;
+
+  document.body.innerHTML = `
+  <!-- NAV -->
+  <nav class="fixed top-0 left-0 right-0 z-50 ${th.nav}">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between h-16 items-center">
+
+        <div class="flex items-center gap-2">
+          <div class="${th.accent}">${icons.zap}</div>
+          <span class="text-xl font-bold">CloudFlow</span>
+        </div>
+
+        <div class="hidden md:flex gap-8">
+          <a href="#features" class="${th.textSecondary} hover:text-white">${t.nav.features}</a>
+          <a href="#pricing" class="${th.textSecondary} hover:text-white">${t.nav.pricing}</a>
+          <a href="#testimonials" class="${th.textSecondary} hover:text-white">${t.nav.testimonials}</a>
+          <a href="#contact" class="${th.textSecondary} hover:text-white">${t.nav.contact}</a>
+        </div>
+
+        <div class="flex items-center gap-2">
+
+          <!-- Theme Switch -->
+          <button id="themeBtn" class="p-2 rounded-lg ${th.buttonSecondary}">
+            ${currentTheme === "light" ? icons.sun : currentTheme === "dark" ? icons.moon : icons.palette}
+          </button>
+
+          <!-- Language Switch -->
+          <select id="langSelect" class="px-3 py-2 rounded-lg ${th.buttonSecondary}">
+            <option value="en" ${currentLang === "en" ? "selected" : ""}>EN</option>
+            <option value="es" ${currentLang === "es" ? "selected" : ""}>ES</option>
+            <option value="hi" ${currentLang === "hi" ? "selected" : ""}>HI</option>
+          </select>
+
+          <!-- Mobile Menu -->
+          <button id="menuBtn" class="md:hidden p-2 rounded-lg ${th.buttonSecondary}">
+            ${icons.menu}
+          </button>
+
+        </div>
+      </div>
+
+      <div id="mobileMenu" class="hidden py-4 space-y-2 md:hidden">
+        <a href="#features" class="${th.textSecondary} block">${t.nav.features}</a>
+        <a href="#pricing" class="${th.textSecondary} block">${t.nav.pricing}</a>
+        <a href="#testimonials" class="${th.textSecondary} block">${t.nav.testimonials}</a>
+        <a href="#contact" class="${th.textSecondary} block">${t.nav.contact}</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="pt-32 pb-20 px-4 ${th.heroBg}">
+    <div class="max-w-7xl mx-auto text-center">
+      <h1 class="text-5xl md:text-6xl font-bold mb-6">${t.hero.title}</h1>
+      <p class="text-xl ${th.textSecondary} max-w-3xl mx-auto mb-8">${t.hero.subtitle}</p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <button class="px-8 py-4 rounded-lg font-semibold ${th.button} flex gap-2 justify-center">
+          ${t.hero.cta} ${icons.arrow}
+        </button>
+
+        <button class="px-8 py-4 rounded-lg font-semibold ${th.buttonSecondary} flex gap-2 justify-center">
+          ${icons.play} ${t.hero.demo}
+        </button>
+      </div>
+
+      <div class="mt-16 p-8 rounded-2xl ${th.statBg} text-white">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div><div class="text-4xl font-bold">10K+</div><div>${t.stats.companies}</div></div>
+          <div><div class="text-4xl font-bold">2M+</div><div>${t.stats.users}</div></div>
+          <div><div class="text-4xl font-bold">99.9%</div><div>${t.stats.uptime}</div></div>
+          <div><div class="text-4xl font-bold">4.9★</div><div>${t.stats.rating}</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT SECTION -->
+  <section id="contact" class="py-20 text-center">
+    <h2 class="text-4xl font-bold mb-4">${t.nav.contact}</h2>
+    <p class="${th.textSecondary}">This is placeholder — content changes by language.</p>
+  </section>
+
+  <footer class="py-12 text-center border-t ${th.nav}">
+    <div class="flex justify-center gap-2 items-center mb-4">${icons.zap}<span class="font-bold">CloudFlow</span></div>
+    <p class="${th.textSecondary}">© 2024 CloudFlow. All rights reserved.</p>
+  </footer>
+  `;
+
+  // EVENT HANDLERS
+  document.getElementById("themeBtn").onclick = () => {
+    currentTheme = currentTheme === "light" ? "dark" : currentTheme === "dark" ? "crayon" : "light";
+    renderPage();
+  };
+
+  document.getElementById("langSelect").onchange = (e) => {
+    currentLang = e.target.value;
+    renderPage();
+  };
+
+  document.getElementById("menuBtn").onclick = () => {
+    const menu = document.getElementById("mobileMenu");
+    menu.classList.toggle("hidden");
+  };
+}
+
+renderPage();
+</script>
+
+</body>
+</html>
