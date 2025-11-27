@@ -1,7 +1,7 @@
 # 🌩️ CloudFlow – Modern SaaS Landing Page Template
 **A Fully Responsive, Multi-Language, Multi-Theme SaaS Landing Page with Interactive UI Components (HTML + Tailwind + Vanilla JS)**
 <p align="center"> <a href="#"><img src="https://img.shields.io/github/stars/alok-kumar8765/CloudFlow?style=for-the-badge&color=yellow" /></a> <a href="#"><img src="https://img.shields.io/github/forks/alok-kumar8765/CloudFlow?style=for-the-badge&color=blue" /></a> <a href="#"><img src="https://img.shields.io/github/issues/alok-kumar8765/CloudFlow?style=for-the-badge&color=red" /></a> <a href="#"><img src="https://img.shields.io/badge/License-MIT-green?style=for-the-badge" /></a> <a href="#"><img src="https://img.shields.io/badge/Made%20With-HTML5-orange?style=for-the-badge" /></a> <a href="#"><img src="https://img.shields.io/badge/Tailwind-CSS-blue?style=for-the-badge" /></a> <a href="#"><img src="https://img.shields.io/badge/JavaScript-Vanilla-yellow?style=for-the-badge" /></a> </p>
----
+
 # ✨ Live Preview
 
 ## **👉 (Add your demo link here once hosted)**
@@ -65,7 +65,7 @@ This template is commercial-use friendly, highly customizable, and easy to integ
 
 ## **📱 Fully Responsive Design**
 
-### ***Works beautifully on:***
+### Works beautifully on:
 
   * Mobile
 
@@ -165,8 +165,8 @@ This template is commercial-use friendly, highly customizable, and easy to integ
 # 🛠️ Installation
 ## **Clone the repository**
 ```bash
-git clone https://github.com/yourusername/CloudFlow.git
-cd CloudFlow
+git clone https://github.com/alok-kumar8765/Landing_Page_Template/
+cd Landing_Page_Template
 
 ```
 ## Open the project
@@ -177,7 +177,7 @@ Just open the index.html file in any browser — no build step required.
 ---
 # 📁 Project Structure
 ```chatgpt
-CloudFlow/
+Landing_Page_Template/
 │── index.html
 │── /assets (optional)
 │── README.md
