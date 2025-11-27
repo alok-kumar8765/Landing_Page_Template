@@ -4,8 +4,8 @@
 
 # ✨ Live Preview
 
-## **👉 (Add your demo link here once hosted)**
-Example: https://yourdemo.com
+## **👉 https://alok-kumar8765.github.io/Landing_Page_Template/**
+
 ---
 ---
 # 🚀 Overview
