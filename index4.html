@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SaaS Landing - HTML Version</title>
+
+<!-- Lucide Icons CDN -->
+<script src="https://unpkg.com/lucide@latest"></script>
+
+<!-- Styles -->
+<style>
+/* -------------------------
+   GENERAL PAGE RESET
+-------------------------- */
+* {
+  margin: 0; padding: 0; box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  transition: 0.4s ease;
+}
+
+/* -------------------------
+   THEMES
+-------------------------- */
+
+/* LIGHT THEME */
+body.light {
+  --bg: #ffffff;
+  --text: #111;
+  --text-secondary: #666;
+  --nav-bg: rgba(255,255,255,0.8);
+  --border: #ddd;
+  --card-bg: #ffffff;
+  --accent: #2563eb;
+  --button-bg: #2563eb;
+  --button-text: #fff;
+  --button-secondary-bg: #eee;
+}
+
+/* DARK THEME */
+body.dark {
+  --bg: #0f0f0f;
+  --text: #fff;
+  --text-secondary: #aaa;
+  --nav-bg: rgba(15,15,15,0.8);
+  --border: #333;
+  --card-bg: #1a1a1a;
+  --accent: #60a5fa;
+  --button-bg: #2563eb;
+  --button-text: #fff;
+  --button-secondary-bg: #333;
+}
+
+/* CRAYON THEME */
+body.crayon {
+  --bg: #fdf3c8;
+  --text: #4b0082;
+  --text-secondary: #be185d;
+  --nav-bg: rgba(255,240,200,0.8);
+  --border: #f0a;
+  --card-bg: #ffffff;
+  --accent: #d946ef;
+  --button-bg: linear-gradient(90deg,#ec4899,#8b5cf6);
+  --button-text: #fff;
+  --button-secondary-bg: #fcd34d;
+}
+
+/* -------------------------
+   BASIC PAGE STRUCTURE
+-------------------------- */
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+nav {
+  position: fixed; top: 0; left: 0; right: 0;
+  background: var(--nav-bg);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--border);
+  padding: 15px;
+  z-index: 100;
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+/* Nav layout */
+.nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Hide mobile menu by default */
+.mobile-menu {
+  display: none;
+}
+
+@media (max-width: 768px){
+  .desktop-menu {
+    display: none;
+  }
+  .mobile-menu-btn {
+    display: inline-block;
+  }
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 24px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+.btn-primary {
+  background: var(--button-bg);
+  color: var(--button-text);
+}
+
+.btn-secondary {
+  background: var(--button-secondary-bg);
+  color: var(--text);
+}
+
+/* Cards */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  padding: 20px;
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+  border-color: var(--accent);
+}
+
+/* Section spacing */
+section {
+  padding: 100px 20px 60px;
+}
+
+/* Center text */
+.text-center {
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  gap: 20px;
+}
+
+.grid-2 { grid-template-columns: repeat(2,1fr); }
+.grid-3 { grid-template-columns: repeat(3,1fr); }
+.grid-4 { grid-template-columns: repeat(4,1fr); }
+
+@media (max-width: 900px){
+  .grid-4 { grid-template-columns: repeat(2,1fr); }
+}
+@media (max-width: 600px){
+  .grid-4, .grid-3, .grid-2 { grid-template-columns: 1fr; }
+}
+
+/* Footer */
+footer {
+  text-align: center;
+  padding: 40px;
+  border-top: 1px solid var(--border);
+}
+</style>
+</head>
+
+<body class="light">
+
+<!-- ------------------------------------------------------------
+   NAVIGATION
+------------------------------------------------------------- -->
+<nav>
+  <div class="container nav-row">
+    <div style="display:flex;align-items:center;gap:10px;">
+      <i data-lucide="zap"></i>
+      <strong>CloudFlow</strong>
+    </div>
+
+    <!-- Desktop Menu -->
+    <div class="desktop-menu" style="display:flex;gap:20px;">
+      <a href="#features" class="nav-features"></a>
+      <a href="#pricing" class="nav-pricing"></a>
+      <a href="#testimonials" class="nav-testimonials"></a>
+      <a href="#contact" class="nav-contact"></a>
+    </div>
+
+    <div style="display:flex;gap:10px;align-items:center;">
+      <button id="themeBtn" class="btn btn-secondary">Theme</button>
+
+      <select id="langSelect" class="btn btn-secondary">
+        <option value="en">EN</option>
+        <option value="es">ES</option>
+        <option value="hi">HI</option>
+      </select>
+
+      <!-- Mobile menu toggle button -->
+      <button id="mobileBtn" class="btn btn-secondary mobile-menu-btn" style="display:none;">Menu</button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu container" id="mobileMenu">
+    <a href="#features" class="nav-features"></a><br>
+    <a href="#pricing" class="nav-pricing"></a><br>
+    <a href="#testimonials" class="nav-testimonials"></a><br>
+    <a href="#contact" class="nav-contact"></a>
+  </div>
+</nav>
+
+<!-- ------------------------------------------------------------
+   HERO SECTION
+------------------------------------------------------------- -->
+<section id="hero" style="padding-top:150px;" class="text-center">
+  <h1 id="hero-title" style="font-size:42px;font-weight:bold;margin-bottom:20px;"></h1>
+  <p id="hero-subtitle" style="font-size:20px;color:var(--text-secondary);margin-bottom:30px;"></p>
+
+  <button class="btn btn-primary" id="hero-cta"></button>
+  <button class="btn btn-secondary" id="hero-demo" style="margin-left:10px;"></button>
+
+  <div class="card" style="margin-top:40px;">
+    <div class="grid grid-4 text-center">
+      <div>
+        <h2>10K+</h2>
+        <span id="stat-companies"></span>
+      </div>
+      <div>
+        <h2>2M+</h2>
+        <span id="stat-users"></span>
+      </div>
+      <div>
+        <h2>99.9%</h2>
+        <span id="stat-uptime"></span>
+      </div>
+      <div>
+        <h2>4.9★</h2>
+        <span id="stat-rating"></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ------------------------------------------------------------
+   FEATURES SECTION
+------------------------------------------------------------- -->
+<section id="features">
+  <h2 id="features-title" class="text-center" style="font-size:32px;margin-bottom:10px;"></h2>
+  <p id="features-subtitle" class="text-center" style="color:var(--text-secondary);margin-bottom:40px;"></p>
+
+  <div class="grid grid-4" id="features-grid"></div>
+</section>
+
+<!-- ------------------------------------------------------------
+   PRICING SECTION
+------------------------------------------------------------- -->
+<section id="pricing">
+  <h2 id="pricing-title" class="text-center" style="font-size:32px;margin-bottom:10px;"></h2>
+  <p id="pricing-subtitle" class="text-center" style="color:var(--text-secondary);margin-bottom:40px;"></p>
+
+  <div class="grid grid-3" id="pricing-grid"></div>
+</section>
+
+<!-- ------------------------------------------------------------
+   TESTIMONIALS SECTION
+------------------------------------------------------------- -->
+<section id="testimonials">
+  <h2 id="testimonials-title" class="text-center" style="font-size:32px;margin-bottom:40px;"></h2>
+
+  <div class="grid grid-3" id="testimonials-grid"></div>
+</section>
+
+<!-- ------------------------------------------------------------
+   CTA SECTION
+------------------------------------------------------------- -->
+<section id="cta" class="text-center">
+  <h2 id="cta-title" style="font-size:32px;margin-bottom:10px;"></h2>
+  <p id="cta-subtitle" style="color:var(--text-secondary);margin-bottom:30px;"></p>
+  <button id="cta-button" class="btn btn-primary"></button>
+</section>
+
+<!-- ------------------------------------------------------------
+   FOOTER
+------------------------------------------------------------- -->
+<footer>
+  <i data-lucide="zap"></i>
+  <p>CloudFlow © 2024</p>
+</footer>
+
+<script>
+/* --------------------------------------------------------
+   TRANSLATION DATA
+--------------------------------------------------------- */
+const translations = {
+  en: {
+    nav:{features:"Features",pricing:"Pricing",testimonials:"Testimonials",contact:"Contact"},
+    hero:{title:"Transform Your Business with Intelligent Automation",subtitle:"Streamline operations and boost productivity.",cta:"Start Free Trial",demo:"Watch Demo"},
+    stats:{companies:"Companies",users:"Active Users",uptime:"Uptime",rating:"Rating"},
+    features:{title:"Powerful Features",subtitle:"Everything you need",items:[
+      {title:"Lightning Fast",desc:"Optimized speed"},
+      {title:"Enterprise Security",desc:"Bank-level protection"},
+      {title:"Advanced Analytics",desc:"Real-time insights"},
+      {title:"Team Collaboration",desc:"Seamless teamwork"}
+    ]},
+    pricing:{title:"Simple Pricing",subtitle:"Choose a plan",plans:[
+      {name:"Starter",price:29,features:["Up to 10 users","Basic analytics","Email support"]},
+      {name:"Professional",price:99,popular:true,features:["50 users","Advanced analytics","Priority support"]},
+      {name:"Enterprise",price:299,features:["Unlimited users","Custom analytics","24/7 support"]}
+    ]},
+    testimonials:{title:"Loved by Teams",items:[
+      {text:"Productivity increased by 300%!",author:"Sarah Johnson",role:"CEO"},
+      {text:"Best investment this year.",author:"Michael Chen",role:"Director"},
+      {text:"Outstanding support!",author:"Emily Rodriguez",role:"Product Manager"}
+    ]},
+    cta:{title:"Ready to Transform?",subtitle:"Join thousands growing with us.",button:"Start Free Trial"}
+  },
+
+  es:{
+    nav:{features:"Características",pricing:"Precios",testimonials:"Testimonios",contact:"Contacto"},
+    hero:{title:"Transforma tu negocio",subtitle:"Optimiza operaciones y productividad.",cta:"Iniciar Prueba",demo:"Ver Demo"},
+    stats:{companies:"Empresas",users:"Usuarios activos",uptime:"Tiempo activo",rating:"Calificación"},
+    features:{title:"Funciones Poderosas",subtitle:"Todo lo que necesitas",items:[
+      {title:"Súper rápido",desc:"Velocidad optimizada"},
+      {title:"Seguridad empresarial",desc:"Protección nivel bancario"},
+      {title:"Analítica avanzada",desc:"Información instantánea"},
+      {title:"Colaboración",desc:"Trabajo en equipo fluido"}
+    ]},
+    pricing:{title:"Precios simples",subtitle:"Elige un plan",plans:[
+      {name:"Inicial",price:29,features:["Hasta 10 usuarios","Analítica básica","Soporte por email"]},
+      {name:"Profesional",price:99,popular:true,features:["50 usuarios","Analítica avanzada","Soporte prioritario"]},
+      {name:"Empresarial",price:299,features:["Usuarios ilimitados","Analítica personalizada","Soporte 24/7"]}
+    ]},
+    testimonials:{title:"Amado por equipos",items:[
+      {text:"¡Productividad 300% más!",author:"Sarah Johnson",role:"CEO"},
+      {text:"Mejor inversión del año.",author:"Michael Chen",role:"Director"},
+      {text:"¡Soporte increíble!",author:"Emily Rodriguez",role:"Gerente"}
+    ]},
+    cta:{title:"¿Listo para transformar?",subtitle:"Únete a miles de empresas.",button:"Inicia tu prueba"}
+  },
+
+  hi:{
+    nav:{features:"विशेषताएं",pricing:"मूल्य निर्धारण",testimonials:"प्रशंसापत्र",contact:"संपर्क"},
+    hero:{title:"अपने व्यवसाय को बदलें",subtitle:"उत्पादकता बढ़ाएं और संचालन आसान करें।",cta:"नि:शुल्क परीक्षण",demo:"डेमो देखें"},
+    stats:{companies:"कंपनियां",users:"सक्रिय उपयोगकर्ता",uptime:"अपटाइम",rating:"रेटिंग"},
+    features:{title:"शक्तिशाली सुविधाएँ",subtitle:"आपको जो चाहिए सब कुछ",items:[
+      {title:"बिजली की गति",desc:"अनुकूलित प्रदर्शन"},
+      {title:"एंटरप्राइज़ सुरक्षा",desc:"उच्च स्तरीय सुरक्षा"},
+      {title:"उन्नत विश्लेषण",desc:"रीयल-टाइम जानकारी"},
+      {title:"टीम सहयोग",desc:"बेहतर टीमवर्क"}
+    ]},
+    pricing:{title:"सरल मूल्य",subtitle:"एक योजना चुनें",plans:[
+      {name:"स्टार्टर",price:29,features:["10 उपयोगकर्ता","बुनियादी विश्लेषण","ईमेल समर्थन"]},
+      {name:"प्रोफेशनल",price:99,popular:true,features:["50 उपयोगकर्ता","उन्नत विश्लेषण","प्राथमिकता समर्थन"]},
+      {name:"एंटरप्राइज़",price:299,features:["असीमित उपयोगकर्ता","कस्टम विश्लेषण","24/7 समर्थन"]}
+    ]},
+    testimonials:{title:"दुनिया भर में पसंद किया गया",items:[
+      {text:"उत्पादकता 300% बढ़ी!",author:"सारा",role:"CEO"},
+      {text:"इस साल का सबसे अच्छा निवेश।",author:"माइकल",role:"निदेशक"},
+      {text:"उत्कृष्ट सपोर्ट!",author:"एमिली",role:"प्रबंधक"}
+    ]},
+    cta:{title:"तैयार हैं?",subtitle:"हमारे साथ हज़ारों व्यवसाय बढ़ रहे हैं।",button:"नि:शुल्क परीक्षण शुरू करें"}
+  }
+};
+
+/* --------------------------------------------------------
+   APPLY TRANSLATIONS
+--------------------------------------------------------- */
+function applyTranslations(lang){
+  const t = translations[lang];
+
+  // Nav
+  document.querySelectorAll(".nav-features").forEach(el=>el.textContent=t.nav.features);
+  document.querySelectorAll(".nav-pricing").forEach(el=>el.textContent=t.nav.pricing);
+  document.querySelectorAll(".nav-testimonials").forEach(el=>el.textContent=t.nav.testimonials);
+  document.querySelectorAll(".nav-contact").forEach(el=>el.textContent=t.nav.contact);
+
+  // Hero
+  document.getElementById("hero-title").textContent = t.hero.title;
+  document.getElementById("hero-subtitle").textContent = t.hero.subtitle;
+  document.getElementById("hero-cta").textContent = t.hero.cta;
+  document.getElementById("hero-demo").textContent = t.hero.demo;
+
+  // Stats
+  document.getElementById("stat-companies").textContent = t.stats.companies;
+  document.getElementById("stat-users").textContent = t.stats.users;
+  document.getElementById("stat-uptime").textContent = t.stats.uptime;
+  document.getElementById("stat-rating").textContent = t.stats.rating;
+
+  // Features
+  document.getElementById("features-title").textContent = t.features.title;
+  document.getElementById("features-subtitle").textContent = t.features.subtitle;
+
+  const fg = document.getElementById("features-grid");
+  fg.innerHTML = "";
+  t.features.items.forEach(f => {
+    fg.innerHTML += `
+      <div class="card">
+        <h3>${f.title}</h3>
+        <p style="color:var(--text-secondary)">${f.desc}</p>
+      </div>`;
+  });
+
+  // Pricing
+  document.getElementById("pricing-title").textContent = t.pricing.title;
+  document.getElementById("pricing-subtitle").textContent = t.pricing.subtitle;
+
+  const pg = document.getElementById("pricing-grid");
+  pg.innerHTML = "";
+  t.pricing.plans.forEach(p => {
+    pg.innerHTML += `
+      <div class="card" style="${p.popular?"border:2px solid var(--accent);":""}">
+        ${p.popular?`<div class="btn btn-primary" style="margin-bottom:10px;">Most Popular</div>`:""}
+        <h3 style="font-size:22px">${p.name}</h3>
+        <p style="font-size:32px;margin:10px 0;">$${p.price}</p>
+        <ul style="color:var(--text-secondary)">
+          ${p.features.map(f=>`<li>${f}</li>`).join("")}
+        </ul>
+      </div>`;
+  });
+
+  // Testimonials
+  document.getElementById("testimonials-title").textContent = t.testimonials.title;
+
+  const tg = document.getElementById("testimonials-grid");
+  tg.innerHTML = "";
+  t.testimonials.items.forEach(te => {
+    tg.innerHTML += `
+      <div class="card">
+        <p style="color:var(--text-secondary)"><em>"${te.text}"</em></p>
+        <strong>${te.author}</strong><br>
+        <span style="color:var(--text-secondary)">${te.role}</span>
+      </div>`;
+  });
+
+  // CTA
+  document.getElementById("cta-title").textContent = t.cta.title;
+  document.getElementById("cta-subtitle").textContent = t.cta.subtitle;
+  document.getElementById("cta-button").textContent = t.cta.button;
+
+  lucide.createIcons();
+}
+
+/* --------------------------------------------------------
+   LANGUAGE DROPDOWN
+--------------------------------------------------------- */
+document.getElementById("langSelect").addEventListener("change", e=>{
+  applyTranslations(e.target.value);
+});
+
+/* --------------------------------------------------------
+   THEME SWITCHER
+--------------------------------------------------------- */
+const themeOrder = ["light","dark","crayon"];
+let themeIndex = 0;
+
+document.getElementById("themeBtn").addEventListener("click", ()=>{
+  themeIndex = (themeIndex + 1) % themeOrder.length;
+  document.body.className = themeOrder[themeIndex];
+});
+
+/* --------------------------------------------------------
+   MOBILE MENU
+--------------------------------------------------------- */
+document.getElementById("mobileBtn").addEventListener("click", ()=>{
+  const menu = document.getElementById("mobileMenu");
+  menu.style.display = menu.style.display === "block" ? "none" : "block";
+});
+
+/* --------------------------------------------------------
+   INITIAL LOAD
+--------------------------------------------------------- */
+applyTranslations("en");
+lucide.createIcons();
+
+</script>
+
+</body>
+</html>
